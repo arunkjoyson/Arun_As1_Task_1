@@ -1,14 +1,14 @@
 ﻿/*
- * Author: Arun Kanjirathingal Joyson
- * Date: 29 January 2025
- * Project: Arun_As1_Task_1
- * 
- * Description:
- * This program calculates the total money Carlo spent on his business trips. 
- * Since he always returns to Toronto before making another trip, each trip cost is a round-trip.
- * It calculates the total travel expenses and the average cost per trip.
- * 
- * Concepts used: Constants, variables, user input, loops, arithmetic operations, and formatted output.
+ Author: Arun Kanjirathingal Joyson
+ Date: 29 January 2025
+ Project: Arun_As1_Task_1
+  
+ Description:
+ This program calculates the total money Carlo spent on his business trips. 
+ Since he always returns to Toronto before making another trip, each trip cost is a round-trip.
+ It calculates the total travel expenses and the average cost per trip.
+  
+ Concepts used: Constants, variables, user input, loops, arithmetic operations, and formatted output.
  */
 
 using System;
@@ -17,19 +17,25 @@ namespace AssignmentOne
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            // Display welcome message
+            string input;
+            int totalCost;
+            int totalTrips;
+             double averageCost;
+            // Displays welcome message
             Console.WriteLine("Welcome to the Business Travel Expense Calculator!");
             Console.WriteLine("Carlo always returns to Toronto before making another trip.");
             Console.WriteLine("Let's calculate his total travel expenses.\n");
 
-            // Define round-trip ticket prices
+            // Define round-trip ticket prices for the 3 locations
             const int ROUND_TRIP_CALGARY = 1350 * 2;
             const int ROUND_TRIP_VANCOUVER = 1500 * 2;
             const int ROUND_TRIP_MONTREAL = 575 * 2;
 
-            while (true) // Loop for multiple calculations
+            while (true) // Loop concept for multiple calculations
             {
                 int tripsToCalgary = -1, tripsToVancouver = -1, tripsToMontreal = -1;
 
@@ -37,7 +43,7 @@ namespace AssignmentOne
                 while (tripsToCalgary < 0)
                 {
                     Console.Write("Enter the number of trips to Calgary: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
 
                     try
                     {
@@ -45,7 +51,7 @@ namespace AssignmentOne
                         if (tripsToCalgary < 0)
                         {
                             Console.WriteLine("Invalid input. Please enter a non-negative whole number.");
-                            tripsToCalgary = -1; // Reset to prompt again
+                            tripsToCalgary = -1; // Reset back to starting value
                         }
                     }
                     catch (FormatException)
@@ -58,7 +64,7 @@ namespace AssignmentOne
                 while (tripsToVancouver < 0)
                 {
                     Console.Write("Enter the number of trips to Vancouver: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
 
                     try
                     {
@@ -66,7 +72,7 @@ namespace AssignmentOne
                         if (tripsToVancouver < 0)
                         {
                             Console.WriteLine("Invalid input. Please enter a non-negative whole number.");
-                            tripsToVancouver = -1; // Reset to prompt again
+                            tripsToVancouver = -1; // Reset back to starting value
                         }
                     }
                     catch (FormatException)
@@ -79,7 +85,7 @@ namespace AssignmentOne
                 while (tripsToMontreal < 0)
                 {
                     Console.Write("Enter the number of trips to Montreal: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
 
                     try
                     {
@@ -87,7 +93,7 @@ namespace AssignmentOne
                         if (tripsToMontreal < 0)
                         {
                             Console.WriteLine("Invalid input. Please enter a non-negative whole number.");
-                            tripsToMontreal = -1; // Reset to prompt again
+                            tripsToMontreal = -1; // Reset back to starting value
                         }
                     }
                     catch (FormatException)
@@ -97,20 +103,28 @@ namespace AssignmentOne
                 }
 
                 // Calculate total cost
-                int totalCost = (tripsToCalgary * ROUND_TRIP_CALGARY) +
+                totalCost = (tripsToCalgary * ROUND_TRIP_CALGARY) +
                                 (tripsToVancouver * ROUND_TRIP_VANCOUVER) +
                                 (tripsToMontreal * ROUND_TRIP_MONTREAL);
 
                 // Calculate total number of trips
-                int totalTrips = tripsToCalgary + tripsToVancouver + tripsToMontreal;
+                totalTrips = tripsToCalgary + tripsToVancouver + tripsToMontreal;
 
                 // Calculate average cost per trip (avoid division by zero)
-                double averageCost = totalTrips > 0 ? (double)totalCost / totalTrips : 0;
+
+                if (totalTrips > 0)
+                {
+                    averageCost = (double)totalCost / totalTrips;  // Calculate average if trips are more than 0
+                }
+                else
+                {
+                    averageCost = 0;  // Set average to 0 if there are no trips
+                }
 
                 // Display results
                 Console.WriteLine("\nSummary of Travel Expenses:");
                 // Displaying the results with formatted output
-                Console.WriteLine($"Total money spent: ${totalCost:N0}");  // Format totalCost as currency with no decimals
+                Console.WriteLine($"Total money spent: ${totalCost:F2}");  // Format totalCost as currency with no decimals
                 Console.WriteLine($"Total trips taken: {totalTrips:N0}");  // Format totalTrips as a number with no decimals
                 Console.WriteLine($"Average cost per trip: ${averageCost:F2}");  // Format averageCost with 2 decimal places
 
