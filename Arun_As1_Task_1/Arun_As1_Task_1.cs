@@ -24,7 +24,7 @@ namespace AssignmentOne
             string input;
             int totalCost;
             int totalTrips;
-             double averageCost;
+            double averageCost;
             // Displays welcome message
             Console.WriteLine("Welcome to the Business Travel Expense Calculator!");
             Console.WriteLine("Carlo always returns to Toronto before making another trip.");
