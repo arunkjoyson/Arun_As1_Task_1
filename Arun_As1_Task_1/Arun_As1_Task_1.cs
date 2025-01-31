@@ -21,6 +21,7 @@ namespace AssignmentOne
 
         static void Main(string[] args)
         {
+            //Variable declaration
             string input;
             int totalCost;
             int totalTrips;
